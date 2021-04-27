@@ -106,12 +106,17 @@
                             style="max-width: 600px"
                         >
                             <div
-                                class="w-46 mr-6 bg-gray-300 flex-shrink-0 rounded-lg shadow-lg overflow-hidden"
+                                class="w-[210px] min-h-[160px] mr-6 bg-gray-300 flex-shrink-0 rounded-lg shadow-lg overflow-hidden"
                             >
                                 <img
                                     class="w-full h-full"
-                                    src="/img/louis.gif"
+                                    v-if="currentQuestion.imageURL"
+                                    :src="currentQuestion.imageURL"
                                 />
+                                <video class="w-full h-full" autoplay onclick="this.play()"
+                                    v-if="currentQuestion.videoURL"
+                                    :src="currentQuestion.videoURL" >
+                                </video>
                             </div>
                             <div class="bg-gray-200 p-6 rounded">
                                 <div

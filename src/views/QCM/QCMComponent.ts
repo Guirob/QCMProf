@@ -1,10 +1,10 @@
-import { Answers } from "@/models/Answers";
-import { QCM } from "@/models/QCM";
-import { QCMReport } from "@/models/QCMReport";
-import { Question } from "@/models/Question";
-import FirebaseService from "@/services/FirebaseService";
-import { Options, Vue } from "vue-class-component";
-import { Option } from "../../models/Option";
+import { Answers } from '@/models/Answers';
+import { QCM } from '@/models/QCM';
+import { QCMReport } from '@/models/QCMReport';
+import { Question } from '@/models/Question';
+import FirebaseService from '@/services/FirebaseService';
+import { Options, Vue } from 'vue-class-component';
+import { Option } from '../../models/Option';
 
 @Options({})
 export default class QCMComponent extends Vue {
@@ -20,8 +20,8 @@ export default class QCMComponent extends Vue {
     mounted() {
         FirebaseService.getInstance()
             .firebaseApp.database()
-            .ref("qcm/1")
-            .on("value", (it) => {
+            .ref('qcm/' + this.$route.params.id)
+            .on('value', (it) => {
                 this.qcm = it.val() as QCM;
             });
     }
