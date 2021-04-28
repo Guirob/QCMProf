@@ -8,6 +8,7 @@
         
         <div class='text-sm font-bold bg-gray-100 shadow absolute left-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded' v-on:click="previousPage()">&larr; Retour</div>
            {{ qcm.id ? "Modifier le QCM" : "Créer un QCM" }}
+           <div v-if="qcm.id" class='text-sm font-bold bg-gray-100 shadow absolute right-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded' v-on:click="goToParticipations()">&rarr; Voir les participations</div>
         </h1>
 
         <div class="text-left w-full bg-gray-100 rounded shadow mb-32">

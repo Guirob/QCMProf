@@ -25,6 +25,7 @@
                 <div
                     class="text-xs font-normal inline-block bg-blue-500 text-white rounded px-3 py-1 float-right hover:bg-blue-600"
                     v-tooltip="'Copier l\'url du QCM'"
+                    v-on:click.stop="copyUrl(qcm)"
                 >
                     Copier l'url
                 </div>

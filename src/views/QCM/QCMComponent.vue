@@ -55,7 +55,7 @@
 
         <div
             class="flex flex-col flex-1 justify-center items-center w-full text-center"
-            v-else-if="questionIndex >= qcm.questions.length"
+            v-else-if="isFinished()"
         >
             <h1 class="text-2xl font-bold mb-12 text-green-500">
                 Bravo, tu as terminé !

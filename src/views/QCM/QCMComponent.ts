@@ -74,9 +74,20 @@ export default class QCMComponent extends Vue {
     public nextQuestion() {
         this.displayModal = false;
         this.questionIndex++;
+
+        if (this.isFinished()) {
+            FirebaseService.getInstance()
+                .firebaseApp.database()
+                .ref('qcm-reports/' + this.qcm.id + '/' + Math.floor(Math.random() * 10000000))
+                .set(this.report);
+        }
     }
 
     public isSelected(option: number) {
         return this.currentAnswer.indexOf(option) >= 0;
+    }
+
+    public isFinished() {
+        return this.questionIndex >= this.qcm.questions.length;
     }
 }

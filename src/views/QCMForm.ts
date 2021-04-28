@@ -114,6 +114,10 @@ export default class QCMForm extends Vue {
         this.isLoading = false;
     }
 
+    public goToParticipations() {
+        this.$router.push({ name: 'qcm-reports', params: { id: this.qcm.id } });
+    }
+
     public autoGrow() {
         let element = this.$refs.title as HTMLElement;
         element.style.height = '5px';
