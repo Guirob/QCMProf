@@ -46,11 +46,15 @@ export default class QCMComponent extends Vue {
     public confirm() {
         this.hasFalseAnswer = false;
         let isGoodAnwser = true;
-        this.currentAnswer.forEach((it) => {
-            if (!this.currentQuestion?.options[it].isGoodOption) {
-                isGoodAnwser = false;
-            }
-        });
+
+        const isMissingOptions =
+            this.currentQuestion!.options.filter((a, i) => {
+                return this.currentAnswer.indexOf(i) < 0;
+            }).filter((a) => a.isGoodOption == true).length > 0;
+
+        if (isMissingOptions) {
+            isGoodAnwser = false;
+        }
 
         this.currentOptionAnswers.push(this.currentAnswer);
         this.currentAnswer = [];

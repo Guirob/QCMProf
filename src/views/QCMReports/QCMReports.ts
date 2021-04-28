@@ -14,12 +14,12 @@ export default class QCMReports extends Vue {
     public isLoading = false;
 
     mounted() {
-        this.qcm = new QCM();
+        /* this.qcm = new QCM();
         this.qcm.questions = [this.randomQuestion(1), this.randomQuestion(2), this.randomQuestion(3), this.randomQuestion(4)];
 
         this.reports = [this.randomReport(), this.randomReport(), this.randomReport()];
-        console.log(this.qcm);
-        /* FirebaseService.getInstance()
+        console.log(this.qcm); */
+        FirebaseService.getInstance()
             .firebaseApp.database()
             .ref('qcm/' + this.$route.params.id)
             .on('value', (it) => {
@@ -31,15 +31,14 @@ export default class QCMReports extends Vue {
                     this.qcm!.map();
                 }
                 this.isLoading = false;
-            }); */
+            });
 
-        /*
         FirebaseService.getInstance()
             .firebaseApp.database()
             .ref('qcm-reports/' + this.$route.params.id)
             .on('value', (it) => {
                 this.reports = it.val();
-            }); */
+            });
     }
 
     back() {
@@ -82,6 +81,10 @@ export default class QCMReports extends Vue {
 
     isGoodOption(answer: Answers, i: number) {
         return this.qcm!.questions[answer.questionIndex].options[i].isGoodOption;
+    }
+
+    isInHistory(history: number[], i: number) {
+        return history.indexOf(i) >= 0;
     }
 
     get currentReport(): QCMReport {

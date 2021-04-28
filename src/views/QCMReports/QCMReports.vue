@@ -17,7 +17,7 @@
                 <div
                     class="text-left w-full bg-gray-300 rounded font-bold text-lg mb-4 px-3 py-1"
                 >
-                    Participants {{ currentReportIndex }}
+                    Participants
                 </div>
                 <div
                     class="text-left w-full rounded shadow px-3 py-1 mb-2 hover:scale-105 cursor-pointer transform duration-200"
@@ -47,7 +47,7 @@
                             :key="a"
                         >
                             <div
-                                class="bg-gray-200 font-bold px-3 py-1 rounded"
+                                class="bg-gray-200 text-lg font-bold px-3 py-1 rounded"
                             >
                                 {{ getQuestionText(answer) }}
                             </div>
@@ -57,20 +57,27 @@
                                 v-for="(history, h) in answer.history"
                                 :key="h"
                             >
-                                <div class="text-xs mt-4 mb-4">
+                                <div
+                                    class="text-2xs px-2 py-1 mt-4 mb-4 font-bold border-b"
+                                >
                                     TENTATIVE {{ h + 1 }}
                                 </div>
                                 <div
-                                    class="px-3 py-1 mb-3 shadow rounded text-white"
-                                    :class="
-                                        isGoodOption(answer, ans)
-                                            ? 'bg-green-500'
-                                            : 'bg-red-500'
-                                    "
-                                    v-for="(ans, s) in history"
+                                    class="px-3 py-1 mb-3 shadow rounded bg-white text-sm font-bold transform duration-200 ml-24"
+                                    v-for="(ans, s) in qcm.questions[
+                                        answer.questionIndex
+                                    ].options"
                                     :key="s"
+                                    :class="[
+                                        ans.isGoodOption
+                                            ? 'text-green-500'
+                                            : 'text-red-500',
+                                        isInHistory(history, s)
+                                            ? 'opacity-100'
+                                            : 'opacity-20 ',
+                                    ]"
                                 >
-                                    {{ getResponseText(answer, ans) }}
+                                    {{ ans.title }}
                                 </div>
                             </div>
                         </div>
