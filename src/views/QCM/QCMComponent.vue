@@ -72,6 +72,7 @@
                 class="input mt-4"
                 placeholder="Ecris ici ton nom et ton prénom"
                 v-model="report.name"
+                v-on:keydown.enter="start()"
             />
 
             <button
