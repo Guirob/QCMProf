@@ -9,9 +9,6 @@ export default class QCMList extends Vue {
     public qcmList: QCM[] = [];
 
     mounted() {
-        const qcm = new QCM();
-        qcm.id = 'blabla';
-        this.qcmList.push(qcm);
         FirebaseService.getInstance()
             .firebaseApp.database()
             .ref('qcm')
@@ -35,7 +32,10 @@ export default class QCMList extends Vue {
 
     deleteQCM(qcm: QCM) {
         if (confirm('Voulez vous vraiment supprimer le qcm "' + qcm.title + '" ?')) {
-            // todo
+            FirebaseService.getInstance()
+                .firebaseApp.database()
+                .ref('qcm/' + qcm.id)
+                .remove();
         }
     }
 

@@ -169,6 +169,10 @@ export default class QCMForm extends Vue {
         return id;
     }
 
+    public openInNewTab() {
+        window.open(this.$router.resolve({ name: 'qcm', params: { id: this.qcm.id } }).href);
+    }
+
     get currentQuestion() {
         return this.qcm.questions[this.questionIndex];
     }

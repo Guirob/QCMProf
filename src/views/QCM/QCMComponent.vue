@@ -2,9 +2,6 @@
     <div
         class="handwrite w-full xl:w-1/3 lg:w-1/2 md:w-1/2 flex flex-col items-center p-12 m-auto h-full my-20"
     >
-        <div class="absolute left-0 top-0 m-6">
-            <router-link to="/admin">Prof</router-link>
-        </div>
         <div class="text-center" v-if="questionIndex < qcm.questions.length">
             <h1 class="font-bold text-4xl">{{ qcm.title }}</h1>
             <div class="text-xl">
@@ -113,10 +110,13 @@
                                     v-if="currentQuestion.imageURL"
                                     :src="currentQuestion.imageURL"
                                 />
-                                <video class="w-full h-full" autoplay onclick="this.play()"
+                                <video
+                                    class="w-full h-full"
+                                    autoplay
+                                    onclick="this.play()"
                                     v-if="currentQuestion.videoURL"
-                                    :src="currentQuestion.videoURL" >
-                                </video>
+                                    :src="currentQuestion.videoURL"
+                                ></video>
                             </div>
                             <div class="bg-gray-200 p-6 rounded">
                                 <div

@@ -5,10 +5,28 @@
         class="w-[800px] flex flex-col items-center justify-center m-auto my-6 relative"
     >
         <h1 class="text-2xl font-bold mb-6 px-6 py-3 w-full text-center">
-        
-        <div class='text-sm font-bold bg-gray-100 shadow absolute left-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded' v-on:click="previousPage()">&larr; Retour</div>
-           {{ qcm.id ? "Modifier le QCM" : "Créer un QCM" }}
-           <div v-if="qcm.id" class='text-sm font-bold bg-gray-100 shadow absolute right-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded' v-on:click="goToParticipations()">&rarr; Voir les participations</div>
+            <div
+                class="text-sm font-bold bg-gray-100 shadow absolute left-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded"
+                v-on:click="previousPage()"
+            >
+                &larr; Retour
+            </div>
+            <div class="text-center flex justify-center items-center flex-col">
+                {{ qcm.id ? "Modifier le QCM" : "Créer un QCM" }}<br />
+                <div
+                    class="bg-blue-500 text-2xs w-48 transform hover:scale-x-105 duration-200 text-white px-3 rounded cursor-pointer"
+                    v-on:click="openInNewTab()"
+                >
+                    Voir dans un nouvel onglet
+                </div>
+            </div>
+            <div
+                v-if="qcm.id"
+                class="text-sm font-bold bg-gray-100 shadow absolute right-0 top-0 mt-4 px-3 py-1 cursor-pointer rounded"
+                v-on:click="goToParticipations()"
+            >
+                &rarr; Voir les participations
+            </div>
         </h1>
 
         <div class="text-left w-full bg-gray-100 rounded shadow mb-32">
@@ -211,10 +229,12 @@
                                     v-if="currentQuestion.imageURL"
                                     :src="currentQuestion.imageURL"
                                 />
-                                <video class="w-full h-full"  onclick="this.play()"
+                                <video
+                                    class="w-full h-full"
+                                    onclick="this.play()"
                                     v-if="currentQuestion.videoURL"
-                                    :src="currentQuestion.videoURL" >
-                                </video>
+                                    :src="currentQuestion.videoURL"
+                                ></video>
                             </div>
                             <div class="flex flex-col flex-1">
                                 <div class="text-2xs text-gray-400 font-bold">
